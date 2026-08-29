@@ -1,4 +1,4 @@
-﻿/* DONDE ZOE - RESTAURANTE PERUANO */
+/* DONDE ZOE - RESTAURANTE PERUANO */
 :root{--rojo-peru:#C1272D;--rojo-oscuro:#8B1A1A;--dorado:#F2C744;--dorado-oscuro:#D4A853;--verde-olivo:#5B7B3A;--naranja:#E8751A;--crema:#FFF8E7;--blanco:#FFFFFF;--negro:#1A1A1A}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden}
@@ -30,8 +30,9 @@ body{font-family:'Lato',sans-serif;background:var(--crema);color:var(--negro);ov
 .preloader-dots span:nth-child(3){animation-delay:.4s}
 @keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
 
-.navbar{position:fixed;top:0;width:100%;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all .4s;background:transparent}
-.navbar.scrolled{background:rgba(193,39,45,.98);backdrop-filter:blur(15px);box-shadow:0 4px 30px rgba(0,0,0,.3);padding:.8rem 5%}
+/* NAVBAR */
+.navbar{position:fixed;top:0;width:100%;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all .4s;background:linear-gradient(180deg,rgba(26,10,10,.95),rgba(139,26,26,.85));backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.navbar.scrolled{background:linear-gradient(180deg,rgba(26,10,10,.98),rgba(193,39,45,.95));backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,.4);padding:.8rem 5%}
 .nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
 .nav-logo-img{width:55px;height:55px;border-radius:50%;border:3px solid var(--dorado);object-fit:cover;transition:all .3s;box-shadow:0 0 15px rgba(242,199,68,.4)}
 .nav-logo:hover .nav-logo-img{transform:scale(1.1) rotate(10deg);border-color:var(--crema)}
@@ -52,9 +53,6 @@ body{font-family:'Lato',sans-serif;background:var(--crema);color:var(--negro);ov
 .menu-toggle:hover::before{opacity:1}
 .nav-menu-footer{display:none}
 .navbar.scrolled .menu-toggle span{background:var(--crema)}
-
-/* Hide on desktop */
-.navbar{position:relative}
 
 .hero{min-height:100vh;background:linear-gradient(135deg,rgba(139,26,26,.95),rgba(193,39,45,.9),rgba(232,117,26,.3)),url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 5% 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;background:radial-gradient(circle,rgba(242,199,68,.25),transparent 70%);border-radius:50%;animation:float 6s ease-in-out infinite}
@@ -461,4 +459,3 @@ footer{background:linear-gradient(180deg,var(--negro),#0D0D0D);color:var(--blanc
     .menu-card-title{font-size:.85rem}
     .novedades-title{font-size:1.3rem}
 }
-
