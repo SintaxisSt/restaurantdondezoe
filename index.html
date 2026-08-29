@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Donde Zoe | Restaurante Peruano - Buin</title>
     <meta name="description" content="Donde Zoe - Gastronomía peruana en Buin. Ceviches, mariscos, platos criollos, coctelería y cafés. Aníbal Pinto 269, Buin.">
     <meta name="keywords" content="restaurante peruano, Buin, ceviche, pisco sour, coctelería, comida peruana, gastronomía, Aníbal Pinto, Región Metropolitana">
@@ -52,10 +52,17 @@
     <link rel="icon" type="image/png" href="images/logo-dz.png">
 </head>
 <body>
-    <div class="preloader">
+    <div class="preloader" id="preloader">
+        <div class="preloader-cooking">
+            <div class="pan">🍳</div>
+            <div class="steam">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
         <img src="images/logo-dz.png" alt="Donde Zoe" class="preloader-logo-img">
         <div class="preloader-text">Donde Zoe</div>
-        <div class="preloader-sub">GASTRONOMÍA PERUANA QUE ENAMORA</div>
+        <div class="preloader-sub">Estamos preparando tu plato...</div>
+        <div class="preloader-dots"><span>.</span><span>.</span><span>.</span></div>
     </div>
     <nav class="navbar">
         <a href="#" class="nav-logo"><img src="images/logo-dz.png" alt="Donde Zoe" class="nav-logo-img"></a>
@@ -68,6 +75,7 @@
         </ul>
         <div class="menu-toggle"><span></span><span></span><span></span></div>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
     <section class="hero" id="inicio">
         <div class="hero-content">
             <img src="images/logo-dz.png" alt="Donde Zoe Logo" class="hero-logo">
@@ -1672,10 +1680,11 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script>
-        window.addEventListener('load',()=>{setTimeout(()=>document.querySelector('.preloader').classList.add('hidden'),1800)});
+        window.addEventListener('load',()=>{setTimeout(()=>document.querySelector('.preloader').classList.add('hidden'),2200)});
         const navbar=document.querySelector('.navbar');window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>100)});
-        document.querySelector('.menu-toggle').addEventListener('click',()=>{document.querySelector('.nav-links').classList.toggle('active')});
-        document.querySelectorAll('.nav-links a').forEach(l=>{l.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('active')})});
+        document.querySelector('.menu-toggle').addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.toggle('active');document.querySelector('.nav-links').classList.toggle('active');document.getElementById('navOverlay').classList.toggle('active')});
+        document.getElementById('navOverlay').addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.remove('active');document.querySelector('.nav-links').classList.remove('active');document.getElementById('navOverlay').classList.remove('active')});
+        document.querySelectorAll('.nav-links a').forEach(l=>{l.addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.remove('active');document.querySelector('.nav-links').classList.remove('active');document.getElementById('navOverlay').classList.remove('active')})});
         const mni=document.querySelectorAll('.menu-nav-item'),ci=document.querySelectorAll('.menu-card'),me=document.getElementById('menuEmpty');
         mni.forEach(i=>{i.addEventListener('click',()=>{const f=i.dataset.filter;if(i.classList.contains('active')){i.classList.remove('active');ci.forEach(c=>c.classList.remove('visible'));me.style.display='block';return}mni.forEach(x=>x.classList.remove('active'));i.classList.add('active');me.style.display='none';ci.forEach(c=>{if(c.dataset.category===f){c.classList.add('visible')}else{c.classList.remove('visible')}})})});
         const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
