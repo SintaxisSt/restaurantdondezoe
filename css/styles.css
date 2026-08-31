@@ -210,6 +210,7 @@ section{padding:6rem 5%}
 .daily-dish-price.show{opacity:1}
 .daily-dish-btn{background:var(--rojo-peru);color:var(--blanco);border:none;padding:.8rem 2rem;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.5px}
 .daily-dish-btn:hover{background:var(--rojo-oscuro);transform:scale(1.05);box-shadow:0 6px 20px rgba(193,39,45,.3)}
+.menu-nav-home{min-width:2.5rem!important;font-size:1.2rem;padding:.5rem .8rem!important}
 @keyframes plateFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes forkWiggle{0%,100%{transform:translateY(-50%) rotate(-25deg)}25%{transform:translateY(-50%) rotate(-30deg)}75%{transform:translateY(-50%) rotate(-20deg)}}
 @keyframes knifeWiggle{0%,100%{transform:translateY(-50%) rotate(25deg)}25%{transform:translateY(-50%) rotate(30deg)}75%{transform:translateY(-50%) rotate(20deg)}}
