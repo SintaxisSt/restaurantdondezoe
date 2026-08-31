@@ -142,7 +142,6 @@
             <div class="decorative-line"></div>
         </div>
         <div class="menu-nav">
-            <button class="menu-nav-item active" data-filter="all">Todo</button>
             <button class="menu-nav-item" data-filter="ceviches">Ceviches</button>
             <button class="menu-nav-item" data-filter="causas">Causas</button>
             <button class="menu-nav-item" data-filter="exclusivos">Exclusivos</button>
@@ -165,7 +164,21 @@
             <button class="menu-nav-item" data-filter="jugos">Jugos</button>
             <button class="menu-nav-item" data-filter="sopas">Sopas</button>
         </div>
-        <div class="menu-grid">
+        <div id="dailyDish" class="daily-dish">
+            <div class="daily-dish-plate">
+                <div class="plate-circle"></div>
+                <div class="cutlery-left">🍴</div>
+                <div class="cutlery-right">🔪</div>
+                <div class="daily-dish-reveal">
+                    <img id="dailyDishImg" src="" alt="" loading="lazy">
+                </div>
+            </div>
+            <h3 class="daily-dish-question">¿Qué comeremos hoy?</h3>
+            <p class="daily-dish-name" id="dailyDishName"></p>
+            <p class="daily-dish-price" id="dailyDishPrice"></p>
+            <button class="daily-dish-btn" id="dailyDishBtn">🔄 Otro plato</button>
+        </div>
+        <div class="menu-grid" id="menuGrid" style="display:none;">
             <div id="menuEmpty" style="display:none;text-align:center;padding:3rem;color:#777;font-style:italic;grid-column:1/-1;">No se encontraron platos en esta categoría</div>
             <div class="menu-card" data-category="ceviches">
                 <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1664992915025-e5e4bbd67fe1?w=400&h=300&fit=crop" alt="Ceviche de Reineta" loading="lazy"></div>
@@ -2241,9 +2254,11 @@
         document.querySelector('.menu-toggle').addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.toggle('active');document.querySelector('.nav-links').classList.toggle('active');document.getElementById('navOverlay').classList.toggle('active');document.querySelector('.nav-menu-footer').classList.toggle('active')});
         document.getElementById('navOverlay').addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.remove('active');document.querySelector('.nav-links').classList.remove('active');document.getElementById('navOverlay').classList.remove('active');document.querySelector('.nav-menu-footer').classList.remove('active')});
         document.querySelectorAll('.nav-links a').forEach(l=>{l.addEventListener('click',()=>{document.querySelector('.menu-toggle').classList.remove('active');document.querySelector('.nav-links').classList.remove('active');document.getElementById('navOverlay').classList.remove('active');document.querySelector('.nav-menu-footer').classList.remove('active')})});
-        const mni=document.querySelectorAll('.menu-nav-item'),ci=document.querySelectorAll('.menu-card'),me=document.getElementById('menuEmpty');
-        ci.forEach(c=>c.classList.add('visible'));
-        mni.forEach(i=>{i.addEventListener('click',()=>{const f=i.dataset.filter;if(i.classList.contains('active')){i.classList.remove('active');ci.forEach(c=>c.classList.remove('visible'));me.style.display='block';return}mni.forEach(x=>x.classList.remove('active'));i.classList.add('active');me.style.display='none';ci.forEach(c=>{if(f==='all'||c.dataset.category===f){c.classList.add('visible')}else{c.classList.remove('visible')}})})});
+        const mni=document.querySelectorAll('.menu-nav-item'),ci=document.querySelectorAll('.menu-card'),me=document.getElementById('menuEmpty'),mg=document.getElementById('menuGrid'),dd=document.getElementById('dailyDish'),di=document.getElementById('dailyDishImg'),dn=document.getElementById('dailyDishName'),dp=document.getElementById('dailyDishPrice'),db=document.getElementById('dailyDishBtn');
+        function pickRandom(){const items=[];ci.forEach(c=>{const img=c.querySelector('.menu-card-img img');const title=c.querySelector('.menu-card-title');const price=c.querySelector('.menu-card-price');if(img&&title&&price)items.push({src:img.src,alt:title.textContent.trim(),price:price.textContent.trim()})});if(!items.length)return;const r=items[Math.floor(Math.random()*items.length)];di.src=r.src;di.alt=r.alt;dn.textContent=r.alt;dp.textContent=r.price;dn.classList.remove('show');dp.classList.remove('show');const rev=document.querySelector('.daily-dish-reveal');rev.classList.remove('show');setTimeout(()=>{rev.classList.add('show');setTimeout(()=>{dn.classList.add('show');dp.classList.add('show')},300)},100)}
+        pickRandom();db.addEventListener('click',pickRandom);
+        mni.forEach(i=>{i.addEventListener('click',()=>{mni.forEach(x=>x.classList.remove('active'));i.classList.add('active');dd.style.display='none';mg.style.display='grid';me.style.display='none';const f=i.dataset.filter;ci.forEach(c=>{if(f==='all'||c.dataset.category===f){c.classList.add('visible')}else{c.classList.remove('visible')}})})});
+        document.querySelector('.menu-nav').addEventListener('click',e=>{if(e.target===e.currentTarget){mni.forEach(x=>x.classList.remove('active'));ci.forEach(c=>c.classList.remove('visible'));dd.style.display='';mg.style.display='none';me.style.display='none'}});
         const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
         document.querySelectorAll('.fade-in,.slide-left,.slide-right').forEach(el=>obs.observe(el));
         document.addEventListener('DOMContentLoaded',()=>{new QRCode(document.getElementById('qrcode'),{text:window.location.href,width:180,height:180,colorDark:'#C1272D',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.H})});

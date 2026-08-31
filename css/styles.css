@@ -194,6 +194,26 @@ section{padding:6rem 5%}
 .menu-card.descuento{border:2px solid var(--dorado);position:relative}
 .menu-card.descuento::after{content:'15% DTO';position:absolute;top:15px;right:15px;background:linear-gradient(135deg,var(--rojo-peru),var(--naranja));color:var(--blanco);padding:.3rem .8rem;border-radius:20px;font-size:.7rem;font-weight:900;z-index:2;animation:pulse 2s infinite}
 
+.daily-dish{text-align:center;padding:3rem 1rem 2rem;position:relative}
+.daily-dish-plate{position:relative;width:260px;height:260px;margin:0 auto 1.5rem}
+.plate-circle{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff 0%,#f5f0e8 60%,#e8ddd0 100%);box-shadow:0 8px 40px rgba(0,0,0,.15),inset 0 2px 10px rgba(255,255,255,.6);border:3px solid #d4c5a9;animation:plateFloat 4s ease-in-out infinite}
+.cutlery-left,.cutlery-right{position:absolute;top:50%;font-size:3rem;transition:all .6s cubic-bezier(.68,-.55,.27,1.55);z-index:3}
+.cutlery-left{left:-30px;transform:translateY(-50%) rotate(-25deg);animation:forkWiggle 2s ease-in-out infinite}
+.cutlery-right{right:-30px;transform:translateY(-50%) rotate(25deg);animation:knifeWiggle 2s ease-in-out infinite .5s}
+.daily-dish-reveal{position:absolute;inset:30px;border-radius:50%;overflow:hidden;opacity:0;transform:scale(.3);transition:all .8s cubic-bezier(.68,-.55,.27,1.55);z-index:2}
+.daily-dish-reveal.show{opacity:1;transform:scale(1)}
+.daily-dish-reveal img{width:100%;height:100%;object-fit:cover}
+.daily-dish-question{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.2rem);color:var(--negro);margin-bottom:.5rem;font-weight:700}
+.daily-dish-name{font-family:'Pacifico',cursive;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--rojo-peru);margin-bottom:.3rem;opacity:0;transform:translateY(20px);transition:all .6s ease .4s}
+.daily-dish-name.show{opacity:1;transform:translateY(0)}
+.daily-dish-price{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--dorado);margin-bottom:1.5rem;opacity:0;transition:all .6s ease .6s}
+.daily-dish-price.show{opacity:1}
+.daily-dish-btn{background:var(--rojo-peru);color:var(--blanco);border:none;padding:.8rem 2rem;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.5px}
+.daily-dish-btn:hover{background:var(--rojo-oscuro);transform:scale(1.05);box-shadow:0 6px 20px rgba(193,39,45,.3)}
+@keyframes plateFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes forkWiggle{0%,100%{transform:translateY(-50%) rotate(-25deg)}25%{transform:translateY(-50%) rotate(-30deg)}75%{transform:translateY(-50%) rotate(-20deg)}}
+@keyframes knifeWiggle{0%,100%{transform:translateY(-50%) rotate(25deg)}25%{transform:translateY(-50%) rotate(30deg)}75%{transform:translateY(-50%) rotate(20deg)}}
+
 .location{background:var(--blanco)}
 .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto}
 .map-container{border-radius:20px;overflow:hidden;box-shadow:0 15px 50px rgba(193,39,45,.15);border:4px solid var(--dorado)}
